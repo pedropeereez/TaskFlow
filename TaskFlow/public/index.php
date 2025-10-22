@@ -1,44 +1,40 @@
+<ul>
 <?php
+if (!empty($tasks) && is_array($tasks)) {
+    foreach ($tasks as $task) {
+        // Clase base
+        $taskClasses = 'task-item';
 
-require_once __DIR__ . '/header.php';
+       
+        if (!empty($task['completed'])) {
+            $taskClasses .= ' completed';
+        }
 
-// Declaración de tareas
-tasks = [
-    [
-        'title' => 'Comprar leche',
-        'completed' => false,
-        'priority' => 'alta',
-    ],
-    [
-        'title' => 'Enviar informe semanal',
-        'completed' => true,
-        'priority' => 'media',
-    ],
-    [
-        'title' => 'Llamar al proveedor',
-        'completed' => false,
-        'priority' => 'baja',
-    ],
-    [
-        'title' => 'Revisar código',
-        'completed' => true,
-        'priority' => 'alta',
-    ],
-    [
-        'title' => 'Planificar reunión',
-        'completed' => false,
-        'priority' => 'media',
-    ],
-];
+       
+        $priority = isset($task['priority']) ? $task['priority'] : '';
+        switch ($priority) {
+            case 'alta':
+                $taskClasses .= ' priority-alta';
+                break;
+            case 'media':
+                $taskClasses .= ' priority-media';
+                break;
+            case 'baja':
+                $taskClasses .= ' priority-baja';
+                break;
+            default:
+                // Sin prioridad conocida: no añadir clase
+                break;
+        }
+
+       
+        $title = isset($task['title']) ? $task['title'] : '(sin título)';
+        echo '<li class="' . htmlspecialchars($taskClasses, ENT_QUOTES, 'UTF-8') . '">';
+        echo '<span class="title">' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</span>';
+        echo '</li>';
+    }
+} else {
+    echo '<li class="task-item">No hay tareas.</li>';
+}
 ?>
-
-<main id="main-content">
-   
-    <h1>Bienvenido a TaskFlow</h1>
-    <p>Aquí va el contenido principal de la página.</p>
-  
-</main>
-
-<?php
-
-require_once __DIR__ . '/footer.php';
+</ul>
