@@ -2,7 +2,7 @@
 <?php
 if (!empty($tasks) && is_array($tasks)) {
     foreach ($tasks as $task) {
-        // Clase base
+       
         $taskClasses = 'task-item';
 
        
@@ -23,7 +23,6 @@ if (!empty($tasks) && is_array($tasks)) {
                 $taskClasses .= ' priority-baja';
                 break;
             default:
-                // Sin prioridad conocida: no añadir clase
                 break;
         }
 
