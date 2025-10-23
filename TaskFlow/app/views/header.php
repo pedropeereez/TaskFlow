@@ -2,53 +2,22 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $pageTitle; ?></title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow</title>
     <style>
-     
-        .task-item {
-            padding: 10px 12px;
-            margin: 6px 0;
-            list-style: none;
-            border-radius: 4px;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-            font-family: Arial, sans-serif;
-        }
-
-   
-        .task-item.completed {
-            opacity: 0.6;
-            text-decoration: line-through;
-        }
-
-
-        .task-item.priority-alta {
-            border-left: 6px solid #e74c3c; /* rojo */
-            background: #fff5f5;
-        }
-        .task-item.priority-media {
-            border-left: 6px solid #f39c12; /* naranja */
-            background: #fffaf0;
-        }
-        .task-item.priority-baja {
-            border-left: 6px solid #27ae60; /* verde */
-            background: #f6fff7;
-        }
-
-        /* Ajustes responsivos / accesibilidad simples */
-        .task-item .title {
-            flex: 1;
-            margin-right: 8px;
-            word-break: break-word;
-        }
+        body { font-family: sans-serif; margin: 2em; background-color: #f1f5f9; }
+        ul { list-style-type: none; padding: 0; }
+        .completed { text-decoration: line-through; color: #9ca3af; }
+        .task-item { padding: 10px; border-left: 5px solid; margin-bottom: 8px; background-color: #ffffff; box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1); border-radius: 0 4px 4px 0; transition: transform 0.2s ease; }
+        .task-item:hover { transform: translateX(5px); }
+        .priority-alta { border-left-color: #ef4444; }
+        .priority-media { border-left-color: #f59e0b; }
+        .priority-baja { border-left-color: #22c55e; }
+        header, footer { text-align: center; color: #475569; }
     </style>
 </head>
 <body>
     <header>
-        <h1>Bienvenido a <?php echo SITE_NAME;?></h1>
+        <h1>Mi Lista de Tareas</h1>
     </header>
     <main>

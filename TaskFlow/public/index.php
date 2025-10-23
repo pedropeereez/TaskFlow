@@ -1,39 +1,23 @@
-<ul>
 <?php
-if (!empty($tasks) && is_array($tasks)) {
-    foreach ($tasks as $task) {
-       
-        $taskClasses = 'task-item';
+require_once __DIR__ . '/app/views/header.php';
+require_once __DIR__ . '/app/views/footer.php';
+require_once __DIR__ . '/app/functions.php';
 
-       
-        if (!empty($task['completed'])) {
-            $taskClasses .= ' completed';
-        }
 
-       
-        $priority = isset($task['priority']) ? $task['priority'] : '';
-        switch ($priority) {
-            case 'alta':
-                $taskClasses .= ' priority-alta';
-                break;
-            case 'media':
-                $taskClasses .= ' priority-media';
-                break;
-            case 'baja':
-                $taskClasses .= ' priority-baja';
-                break;
-            default:
-                break;
-        }
-
-       
-        $title = isset($task['title']) ? $task['title'] : '(sin título)';
-        echo '<li class="' . htmlspecialchars($taskClasses, ENT_QUOTES, 'UTF-8') . '">';
-        echo '<span class="title">' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</span>';
-        echo '</li>';
-    }
-} else {
-    echo '<li class="task-item">No hay tareas.</li>';
-}
+$tareas = [
+    ['titulo' => 'Configurar el entorno de desarrollo', 'completado' => true, 'prioridad' => 'alta'],
+    ['titulo' => 'Crear la estructura de carpetas', 'completado' => true, 'prioridad' => 'alta'],
+    ['titulo' => 'Diseñar la base de datos', 'completado' => false, 'prioridad' => 'media'],
+    ['titulo' => 'Implementar el sistema de login', 'completado' => false, 'prioridad' => 'alta'],
+    ['titulo' => 'Crear la vista de tareas', 'completado' => false, 'prioridad' => 'baja']
+];
 ?>
+
+<h2>Tareas Pendientes</h2>
+<ul>
+    <?php foreach ($tareas as $tarea): ?>
+        <?php echo renderizarTarea($tarea); ?>
+    <?php endforeach; ?>
 </ul>
+
+<?php include '../app/views/footer.php'; ?>
